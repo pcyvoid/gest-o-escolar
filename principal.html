@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Professor</title>
+</head>
+
+<body class="text-black">
+
+
+    <div class="header">
+        <h1>Bem-vindo,  {{user['nomeUsuario']}}!</h1>
+        <form action="/principal/adicionar" method="GET">
+            <button type="submit" class="add">Adicionar Nova Turma</button>
+        </form>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Código</th>
+                <th>Nome</th>
+                <th>Período</th>
+                <th>-</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for turma in turmas %}
+            <tr>
+                <td>{{ turmas[turma]["codigo"] }}</td>
+                <td>{{ turmas[turma]["nome"] }}</td>
+                <td>{{ turmas[turma]["periodo"] }}</td>
+                <td>
+                    <a href='/principal/excluir/{{turmas[turma]["codigo"]}}'>excluir</a>
+                </td>
+            {% endfor %}
+        </tbody>
+    </table>
